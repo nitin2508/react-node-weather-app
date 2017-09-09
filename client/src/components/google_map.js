@@ -1,4 +1,5 @@
 import React ,{Component} from 'react';
+const googleMapkey = 'AIzaSyAvcaVn8yGHwikfsUcUEva5holFb_UOieI';
 
  class GoogleMap extends Component{
 
@@ -10,7 +11,8 @@ import React ,{Component} from 'react';
              center:{
                  lat:this.props.lat,
                  lng:this.props.lon
-             }
+             },
+             key:googleMapkey
          });
      }
      render(){
