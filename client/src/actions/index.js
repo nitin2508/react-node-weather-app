@@ -11,7 +11,7 @@ export function fetchWeather(address){
 	loading();
     const weatherObj = {address:address}
     //const url ='http://localhost:3000/weather';
-		const url = 'http://35.166.116.182:3007/weather';
+		const url = 'http://weather.nitinnagarlab.com/weather';
     const request =axios.post(url,weatherObj);
 
     return{
