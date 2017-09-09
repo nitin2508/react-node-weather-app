@@ -3,7 +3,7 @@ var path = require('path');
 const bodyParser = require('body-parser');
 const weatherRouter = require('./routes/weatherRoute');
 const app = express();
-const port = 3000;
+const port = 3007;
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
