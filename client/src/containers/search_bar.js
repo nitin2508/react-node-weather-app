@@ -5,11 +5,11 @@ import {fetchWeather} from '../actions/index';
 class SearchBar extends Component{
     constructor(props){
         super(props);
-        this.state ={term:''};
+        this.state ={term:'',getCurrentLocationWeather:true};
 
         this.onInputChange = this.onInputChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
-
+        this.getLocation = this.getLocation.bind(this);
     }
 
     onFormSubmit(event){
@@ -30,8 +30,21 @@ class SearchBar extends Component{
         }
       }
 
+  getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((location)=>{
+          this.setState({getCurrentLocationWeather:false});
+          this.props.fetchWeather(location.coords.latitude,location.coords.longitude);
+        });
+    }
+}
+
     render(){
-        return(<form onSubmit={this.onFormSubmit} className="input-group">
+        return(
+          <div>
+          {this.state.getCurrentLocationWeather?<button onClick={this.getLocation} className="btn btn-secoundary">Get current location weather</button>:''}
+
+          <form onSubmit={this.onFormSubmit} className="input-group">
         <input  className="form-control" placeholder="Enter address to get forecast for the day"
          onChange={this.onInputChange}
          value={this.state.term}
@@ -40,7 +53,8 @@ class SearchBar extends Component{
          {this. giveButtonType()}
 
         </span>
-        </form>);
+        </form>
+        </div>);
     }
 }
 

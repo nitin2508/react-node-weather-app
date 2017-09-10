@@ -7,11 +7,16 @@ export const LOADING = 'LOADING';
 export const ERROR = 'ERROR';
 
 
-export function fetchWeather(address){
+export function fetchWeather(address,longitude){
 	loading();
-    const weatherObj = {address:address}
-    //const url ='http://localhost:3000/weather';
-		const url = 'http://weather.nitinnagarlab.com/weather';
+	console.log(process.env.NODE_ENV);
+	if(longitude){
+		  var weatherObj = {latitude:address,longitude:longitude}
+	}else{
+		  var weatherObj = {address:address}
+	}
+
+    const url =process.env.NODE_ENV === 'development'?'http://localhost:3007/weather':'http://weather.nitinnagarlab.com/weather';
     const request =axios.post(url,weatherObj);
 
     return{
