@@ -16,7 +16,7 @@ export function fetchWeather(address,longitude){
 		  var weatherObj = {address:address}
 	}
 
-    const url =process.env.NODE_ENV === 'development'?'http://localhost:3007/weather':'http://weather.nitinnagarlab.com/weather';
+    const url =process.env.NODE_ENV === 'development'?'http://localhost:3007/weather':'https://weather.nitinnagarlab.com/weather';
     const request =axios.post(url,weatherObj);
 
     return{
